@@ -1,0 +1,48 @@
+{
+  "name": "react-my-package",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "material-ui": "^0.18.6",
+    "moment": "^2.18.1",
+    "npm-run-all": "^4.0.2",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.7.0",
+    "redux-saga": "^0.16.0",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
+  },
+  "devDependencies": {
+    "es6-promise": "^4.1.1",
+    "flow-bin": "^0.48.0",
+    "husky": "^0.13.4",
+    "isomorphic-fetch": "^2.2.1",
+    "jest-cli": "^20.0.4",
+    "lint-staged": "^4.0.0",
+    "prettier": "^1.4.4",
+    "react-scripts": "1.0.7",
+    "redux-devtools-extension": "^2.13.2"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "flow": "flow",
+    "start": "react-scripts start",
+    "_build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "build": "node ./scripts/build"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --no-semi --print-width 120",
+      "git add"
+    ]
+  },
+  "homepage": "http://pos.tinker.press"
+}
