@@ -10,7 +10,7 @@ export default view(({ model, dispatch }) => {
   return (
     <div>
       <h1>Hello world</h1>
-      <PairCounter model={model} dispatch={dispatch} />
+      <PairCounter model={model.pair} dispatch={forwardTo(dispatch, "Pair")} />
     </div>
   )
 })

@@ -1,7 +1,7 @@
 import { Updater } from "redux-elm"
 import counterUpdater, { initialModel as counterInitialModel } from "../counter/updater"
 
-const initialModel = {
+export const initialModel = {
   topCounter: counterInitialModel,
   bottomCounter: counterInitialModel
 }

@@ -23,7 +23,7 @@
   "devDependencies": {
     "es6-promise": "^4.1.1",
     "flow-bin": "^0.48.0",
-    "husky": "^0.13.4",
+    "husky": "^0.14.3",
     "isomorphic-fetch": "^2.2.1",
     "jest-cli": "^20.0.4",
     "lint-staged": "^4.0.0",

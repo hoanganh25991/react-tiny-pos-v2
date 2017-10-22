@@ -1,5 +1,11 @@
 import { Updater } from "redux-elm"
 
-const initalState = { pair: {} }
+import { initialModel as fk } from "../components/pair-of-counters/updater"
 
-export default new Updater(initalState).toReducer()
+import fud from "../components/pair-of-counters/updater"
+
+const initalState = { pair: fk }
+
+export default new Updater(initalState)
+  .case("Pair", (model, ...rest) => ({ ...model, pair: fud(model.pair, ...rest) }))
+  .toReducer()
