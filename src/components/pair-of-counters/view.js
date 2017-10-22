@@ -5,7 +5,7 @@ import Counter from "../counter/view"
 
 export default view(({ model, dispatch }) => {
   console.log("PairCounter")
-  console.log(model, dispatch)
+  console.log(model)
   return (
     <div>
       <Counter model={model.topCounter} dispatch={forwardTo(dispatch, "TopCounter")} />

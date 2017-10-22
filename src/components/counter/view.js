@@ -9,14 +9,25 @@ const countStyle = {
   textAlign: "center"
 }
 
-export default view(({ model, dispatch }) => {
-  console.log("Coutner", model)
+class Counter extends React.PureComponent {
+  componentDidMount() {
+    console.log("Counter did mount")
+  }
 
-  return (
-    <div>
-      <button onClick={() => dispatch({ type: "Decrement" })}>-</button>
-      <div style={countStyle}>{model}</div>
-      <button onClick={() => dispatch({ type: "Increment" })}>+</button>
-    </div>
-  )
+  render() {
+    const { model, dispatch } = this.props
+
+    return (
+      <div>
+        <button onClick={() => dispatch({ type: "Decrement" })}>-</button>
+        <div style={countStyle}>{model}</div>
+        <button onClick={() => dispatch({ type: "Increment" })}>+</button>
+      </div>
+    )
+  }
+}
+
+export default view(({ model, dispatch }) => {
+  console.log("Counter", model)
+  return <Counter model={model} dispatch={dispatch} />
 })
