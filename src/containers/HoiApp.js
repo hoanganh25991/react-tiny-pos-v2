@@ -2,8 +2,6 @@
 import { connect } from "react-redux"
 import App from "../components/App"
 
-const mapStateToProps = state => ({})
+const mapStateToProps = appState => ({ model: appState })
 
-const mapActionToProps = dispatch => ({})
-
-export default connect(mapStateToProps, mapActionToProps)(App)
+export default connect(mapStateToProps, null)(App)

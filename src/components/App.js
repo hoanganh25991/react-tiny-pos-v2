@@ -1,13 +1,16 @@
 // @flow
 import React from "react"
 
-export default class App extends React.Component {
+import PairCounter from "./pair-of-counters/view"
+import { forwardTo, view } from "redux-elm"
 
-  render() {
-    return (
-      <div>
-	      <h1>Hello world</h1>
-      </div>
-    )
-  }
-}
+export default view(({ model, dispatch }) => {
+  console.log(model, dispatch)
+
+  return (
+    <div>
+      <h1>Hello world</h1>
+      <PairCounter model={model} dispatch={dispatch} />
+    </div>
+  )
+})

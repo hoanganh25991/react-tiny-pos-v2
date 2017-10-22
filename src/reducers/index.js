@@ -1,8 +1,5 @@
-const initalState = {}
+import { Updater } from "redux-elm"
 
-export default (state = initalState, action) => {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
+const initalState = { pair: {} }
+
+export default new Updater(initalState).toReducer()

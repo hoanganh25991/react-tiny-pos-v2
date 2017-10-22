@@ -4,11 +4,14 @@ import ReactDOM from "react-dom"
 import registerServiceWorker from "./registerServiceWorker"
 
 // Redux
-import { Provider } from "react-redux"
+import { Provider, connect } from "react-redux"
 import { composeWithDevTools } from "redux-devtools-extension/developmentOnly"
 import thunkMiddleware from "redux-thunk"
-import { createStore, applyMiddleware } from "redux"
+import { createStore, applyMiddleware, compose } from "redux"
+
 import reducers from "./reducers"
+
+import reduxElm from "redux-elm"
 
 // Sagas
 import mySaga from "./sagas"
@@ -25,14 +28,16 @@ import HoiApp from "./containers/HoiApp"
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
 // Create store for redux
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware, sagaMiddleware)))
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
 
+registerServiceWorker()
+
+const storeFactory = compose(reduxElm)(createStore)
+const store = storeFactory(reducers, composeWithDevTools(applyMiddleware(thunkMiddleware, sagaMiddleware)))
+
 // Run the saga
 sagaMiddleware.run(mySaga)
-
-registerServiceWorker()
 
 // Render
 ReactDOM.render(
