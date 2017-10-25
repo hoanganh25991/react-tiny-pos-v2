@@ -9,8 +9,10 @@ const iniState = {
 }
 
 export const fetchTables = () => dispatch => {
-  const waitForGetTables = getTables()
-  waitForGetTables.then(tables => dispatch({ type: UPDATE_TABLES, tables }))
+  const snapShotObservable = getTables()
+  snapShotObservable.subscribe(s => {
+    dispatch({ type: UPDATE_TABLES, tables: s })
+  })
 }
 
 export default new Updater(iniState)
