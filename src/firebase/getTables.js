@@ -1,8 +1,13 @@
 import firestore from "./firestore"
 
 export default () => {
-  const tables = firestore.collection("tables").get()
-  tables.then(snapShot => {
-    snapShot.forEach(doc => console.log(doc.data()))
+  return new Promise(resolve => {
+    firestore.collection("tables").onSnapshot(snapShot => {
+      const tables = []
+      snapShot.forEach(doc => {
+        tables.push(doc.data())
+      })
+      resolve(tables)
+    })
   })
 }

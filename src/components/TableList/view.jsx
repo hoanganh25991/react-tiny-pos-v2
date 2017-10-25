@@ -1,13 +1,13 @@
 import React from "react"
 import { view } from "redux-elm"
 
-import {FETCH_TABLE} from "./updater";
+import {fetchTables} from "./updater";
 
 class TableList extends React.PureComponent {
   componentDidMount(){
     console.log("Ok, give me all tables we have")
     const {dispatch} = this.props
-    dispatch({type: FETCH_TABLE, name: "AnhLeHoang"})
+    dispatch(fetchTables())
   }
 
 
