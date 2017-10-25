@@ -1,5 +1,6 @@
 import firestore from "./firestore"
 import { Observable } from "rxjs/Observable"
+// import {compose} from "recompose"
 const rightCompose = function() {
   const funcs = Array.apply(null, arguments).map(arg => arg)
 
@@ -17,41 +18,13 @@ const withConvertToArray = snapShot => {
 }
 
 const withReadData = arr => {
-  const temp = arr.map(doc => doc.data())
-  // console.log(temp)
-  return temp
+  return arr.map(doc => doc.data())
 }
 
 const fs = firestore.collection("tables")
-
 const fsCallback = fs.onSnapshot.bind(fs)
 
-const withObservableChain = s => o => o.next(s)
-
-const x = o => l => cb => cb(l)
-
-const m = (cb, xxx) => o => cb(s => o.next(xxx(s)))
-
 export default () => {
-  const xxx = rightCompose(m(fsCallback, rightCompose(withReadData, withConvertToArray)))
-
-  // return Observable.create(o => xxx())
-
-  // const xxx = rightCompose(
-  //   withObservableChain,
-  //   withReadData,
-  //   withConvertToArray,
-  // )
-  //
-  // const s2 = o => s => o.next(s)
-  //
-  // const m = o => {
-  //   return rightCompose(
-  //     fsCallback,
-  //     s2(o),
-  //     xxx
-  //   )
-  // }
-
-  return Observable.create(xxx)
+  const parse = rightCompose(withReadData, withConvertToArray)
+  return Observable.create(o => fsCallback(s => o.next(parse(s))))
 }
