@@ -1,3 +1,5 @@
+import getTables from "../../firebase/getTables"
+
 import { Updater } from "redux-elm"
 export const FETCH_TABLE = "FETCH_TABLE"
 
@@ -10,6 +12,7 @@ export default new Updater(iniState)
     console.log(currState, action, "See your request")
     const { name } = action
     console.log(name, "See name pass")
+    getTables()
     return ["Vai luyen chua"]
   })
   .toReducer()
