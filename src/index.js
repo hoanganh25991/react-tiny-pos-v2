@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import reduxElm from "redux-elm"
-import App from "./components/App/view"
+import App from "./components/App"
 import thunkMiddleware from "redux-thunk"
 import { connect, Provider } from "react-redux"
 import reducers from "./components/App/updater"

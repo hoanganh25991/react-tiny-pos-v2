@@ -6,6 +6,7 @@ import createHistory from "history/createBrowserHistory"
 import { Router, Route } from "react-router"
 
 import T from "../TableList/view"
+import Link from "../Link/view"
 
 const theme = createMuiTheme({
   //My custom option here
@@ -21,14 +22,20 @@ class App extends React.PureComponent {
   render() {
     const { model, dispatch } = this.props
 
+    const {tableList} = model
+
     return (
       <MuiThemeProvider theme={theme}>
         <Router history={this.history}>
           <div>
             <h1>Hello</h1>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/abc">abc</Link></li>
+            </ul>
             <div>
-              <Route exact path={"/"} render={() => <T {...{ model, dispatch }} />} />
-              <Route path={"/abc"} render={() => <T {...{ model, dispatch }} />} />
+              <Route exact path={"/"} render={() => <T {...{ model: tableList, dispatch }} />} />
+              <Route path={"/abc"} render={() => <T {...{ model: tableList, dispatch }} />} />
             </div>
           </div>
         </Router>
