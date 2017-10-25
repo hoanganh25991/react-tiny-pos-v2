@@ -16,15 +16,42 @@ const withConvertToArray = snapShot => {
   return arr
 }
 
-const withReadData = arr => arr.map(doc => doc.data())
+const withReadData = arr => {
+  const temp = arr.map(doc => doc.data())
+  // console.log(temp)
+  return temp
+}
 
-const withObservableChain = observer => data => observer.next(data)
+const fs = firestore.collection("tables")
+
+const fsCallback = fs.onSnapshot.bind(fs)
+
+const withObservableChain = s => o => o.next(s)
+
+const x = o => l => cb => cb(l)
+
+const m = (cb, xxx) => o => cb(s => o.next(xxx(s)))
 
 export default () => {
-  return Observable.create(observer => {
-    const withReadOutTable = rightCompose(withObservableChain(observer), withReadData, withConvertToArray)
+  const xxx = rightCompose(m(fsCallback, rightCompose(withReadData, withConvertToArray)))
 
-    firestore.collection("tables").onSnapshot(snapShot => withReadOutTable(snapShot))
-  })
+  // return Observable.create(o => xxx())
+
+  // const xxx = rightCompose(
+  //   withObservableChain,
+  //   withReadData,
+  //   withConvertToArray,
+  // )
+  //
+  // const s2 = o => s => o.next(s)
+  //
+  // const m = o => {
+  //   return rightCompose(
+  //     fsCallback,
+  //     s2(o),
+  //     xxx
+  //   )
+  // }
+
+  return Observable.create(xxx)
 }
-/////
