@@ -10,6 +10,7 @@ class TableList extends React.PureComponent {
     dispatch(fetchTables())
   }
 
+  hello = () => console.log("Say hi")
 
   render() {
     const { model, dispatch } = this.props

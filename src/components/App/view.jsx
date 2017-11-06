@@ -1,12 +1,13 @@
 import React from "react"
-import { view } from "redux-elm"
 import "typeface-roboto"
+import { view } from "redux-elm"
+import { Router, Route }   from "react-router"
 import { MuiThemeProvider, createMuiTheme } from "material-ui/styles"
 import createHistory from "history/createBrowserHistory"
-import { Router, Route } from "react-router"
 
 import T from "../TableList/view"
 import Link from "../Link/view"
+import TR from "../TableRaw"
 
 const theme = createMuiTheme({
   //My custom option here
@@ -37,6 +38,8 @@ class App extends React.PureComponent {
               <Route exact path={"/"} render={() => <T {...{ model: tableList, dispatch }} />} />
               <Route path={"/abc"} render={() => <T {...{ model: tableList, dispatch }} />} />
             </div>
+            <T {...{ model: tableList, dispatch }} ref={node => console.log(node)} />
+            <TR ref={node => console.log(node)}/>
           </div>
         </Router>
       </MuiThemeProvider>
